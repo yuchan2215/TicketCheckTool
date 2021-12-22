@@ -13,6 +13,19 @@ class alert():
         requestData = {'message':'{}の{}の販売状況が売り切れ以外に変更されました。\nステータスコード:{}'.format(self.date,ticketType,status)}
         header = {'Authorization':'Bearer {}'.format(arg2)}
         requests.post('https://notify-api.line.me/api/notify',params=requestData,headers=header)
+class ticketData:
+    def __init__(self,status,last):
+        self.status = status
+        self.last = last
+    def setStatus(self,status):
+        self.status = status
+    def setLast(self,last):
+        self.last = last
+    
+    def getStatus(self):
+        return self.status
+    def getLast(self):
+        return self.last
 
 def run():
     print(arg0,"から",arg1,"のデータを取得します")
