@@ -3,6 +3,7 @@ arg0 = sys.argv[1]
 arg1 = sys.argv[2]
 arg2 = sys.argv[3]
 arg3 = sys.argv[4]
+dic = {}
 
 class alert():
     date = arg1
@@ -25,8 +26,17 @@ def run():
     for i in jsonData:
         ticketType = i['parkticketgroupname']
         status = int(i['saleStatus'])
-        if status != 3:
-            alert().alertRun(ticketType,status)
+        #もし辞書に入っていなければ追加する
+        if ticketType not in dic:
+            dic[ticketType] = -1
+
+        #違うステータスなら
+        if dic[ticketType] != status:
+            #売り切れではないなら
+            if status != 3:
+                #通知する
+                alert().alertRun(ticketType,status)
+            dic[ticketType] = status
 
 while True:
     run()
