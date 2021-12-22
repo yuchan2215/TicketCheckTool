@@ -1,5 +1,6 @@
 # このプログラムについて
 APIを叩き、返答の`parkticketgroupname`と`saleStatus`を監視し、`saleStatus`が3以外になった場合にLineNotifyへ通知します。同じ状況が続いている場合には通知しません。
+なお、このプログラムは自己責任にて利用してください。
 
 # 本番動作確認環境
  - Python
