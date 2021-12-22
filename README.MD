@@ -1,5 +1,6 @@
 # このプログラムについて
 APIを叩き、返答の`parkticketgroupname`と`saleStatus`を監視し、`saleStatus`が3以外になった場合にLineNotifyへ通知します。同じ状況が続いている場合には通知しません。
+なお、このプログラムは自己責任にて利用してください。
 
 # 本番動作確認環境
  - Python
@@ -25,7 +26,7 @@ APIを叩き、返答の`parkticketgroupname`と`saleStatus`を監視し、`sale
 # 本番実行方法
 `py main.py APIのURL 検索したい日付(yyyyMMdd) bearerToken(LineNotify) 確認周期秒数`  
 Example:
-`py main.py https://reserve.tokyodisneyresort.jp/ticket/ajax/searchTicket/ 20220215 TOKEN_HERE 120`
+`py main.py https://resort.jp/ticket/ajax/searchTicket/ 20220215 TOKEN_HERE 120`
 
 # テスト環境実行方法
 json-server:
