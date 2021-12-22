@@ -1,0 +1,42 @@
+{
+    "api0": [
+        {
+            "parkticketgroupname": "チケット種別０１",
+            "saleStatus": "3"
+        },
+        {
+            "parkticketgroupname": "チケット種別０２",
+            "saleStatus": "3"
+        }
+    ],
+    "api1": [
+        {
+            "parkticketgroupname": "チケット種別０１",
+            "saleStatus": "1"
+        },
+        {
+            "parkticketgroupname": "チケット種別０２",
+            "saleStatus": "3"
+        }
+    ],
+    "api2": [
+        {
+            "parkticketgroupname": "チケット種別０１",
+            "saleStatus": "3"
+        },
+        {
+            "parkticketgroupname": "チケット種別０２",
+            "saleStatus": "1"
+        }
+    ],
+    "api3": [
+        {
+            "parkticketgroupname": "チケット種別０１",
+            "saleStatus": "1"
+        },
+        {
+            "parkticketgroupname": "チケット種別０２",
+            "saleStatus": "1"
+        }
+    ]
+}
