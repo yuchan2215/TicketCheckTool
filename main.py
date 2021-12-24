@@ -39,7 +39,7 @@ def run():
                 #通知する
                 alert().alertRun(ticketType,status)
             dic[ticketType] = status
-
+message("プログラムが起動しました")
 while True:
     run()
     time.sleep(int(arg3))
