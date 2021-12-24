@@ -11,9 +11,7 @@ class alert():
     def alertRun(self,ticketType,status):
         #もしチケットが発売しているときの処理
         print('{}の販売状況が更新されたため通知します'.format(ticketType))
-        requestData = {'message':'{}の{}の販売状況が売り切れ以外に変更されました。\nステータスコード:{}'.format(self.date,ticketType,status)}
-        header = {'Authorization':'Bearer {}'.format(arg2)}
-        requests.post('https://notify-api.line.me/api/notify',params=requestData,headers=header)
+        message('{}の{}の販売状況が売り切れ以外に変更されました。\nステータスコード:{}'.format(self.date,ticketType,status))
 def message(message):
     requestData = {'message':message}
     header = {'Authorization':'Bearer {}'.format(arg2)}
