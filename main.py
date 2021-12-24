@@ -16,29 +16,39 @@ def message(message):
     requestData = {'message':message}
     header = {'Authorization':'Bearer {}'.format(arg2)}
     requests.post('https://notify-api.line.me/api/notify',params=requestData,headers=header)
+def getAPI():
+    requestData = {'useDays':1,"useDateFrom":arg1,'parkTicketSalesForm':1}
+    headerData = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36'}
+    try:
+        response = requests.post(arg0, params=requestData, headers=headerData)
+        print("データ取得完了",response.text[:30].replace("\n",""))
+        text = json.loads(response.text)
+        return text
+    except:
+        raise
 
 def run():
     print(arg0,"から",arg1,"のデータを取得します")
-    requestData = {'useDays':1,"useDateFrom":arg1,'parkTicketSalesForm':1}
-    headerData = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36'}
-    response = requests.post(arg0, params=requestData, headers=headerData)
-    print("データ取得完了",response.text[:30])
+    try:
+        jsonData = getAPI()
+        for i in jsonData:
+            ticketType = i['parkticketgroupname']
+            status = int(i['saleStatus'])
+            #もし辞書に入っていなければ追加する
+            if ticketType not in dic:
+                dic[ticketType] = -1
 
-    jsonData = json.loads(response.text)
-    for i in jsonData:
-        ticketType = i['parkticketgroupname']
-        status = int(i['saleStatus'])
-        #もし辞書に入っていなければ追加する
-        if ticketType not in dic:
-            dic[ticketType] = -1
+            #違うステータスなら
+            if dic[ticketType] != status:
+                #売り切れではないなら
+                if status != 3:
+                    #通知する
+                    alert().alertRun(ticketType,status)
+                dic[ticketType] = status
+    except:
+        print("エラーが発生しました")
+        pass
 
-        #違うステータスなら
-        if dic[ticketType] != status:
-            #売り切れではないなら
-            if status != 3:
-                #通知する
-                alert().alertRun(ticketType,status)
-            dic[ticketType] = status
 message("プログラムが起動しました")
 while True:
     run()
