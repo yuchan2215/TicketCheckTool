@@ -14,6 +14,10 @@ class alert():
         requestData = {'message':'{}の{}の販売状況が売り切れ以外に変更されました。\nステータスコード:{}'.format(self.date,ticketType,status)}
         header = {'Authorization':'Bearer {}'.format(arg2)}
         requests.post('https://notify-api.line.me/api/notify',params=requestData,headers=header)
+def message(message):
+    requestData = {'message':message}
+    header = {'Authorization':'Bearer {}'.format(arg2)}
+    requests.post('https://notify-api.line.me/api/notify',params=requestData,headers=header)
 
 def run():
     print(arg0,"から",arg1,"のデータを取得します")
